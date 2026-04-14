@@ -1,27 +1,40 @@
 /* ============================================
-   PREMIUM GOVERNMENT PORTAL DESIGN
-   Nakuru County CCNO Evidence Upload System
-   Clean, Professional, Accessible
+   NAKURU COUNTY CCNO BRAND STYLES
+   Colors extracted from official logo
    ============================================ */
 
-/* CSS Variables */
 :root {
-  --primary: #0f3b3c;
-  --primary-light: #1a5c5e;
-  --primary-dark: #0a2a2b;
-  --primary-gradient: linear-gradient(135deg, #0f3b3c 0%, #1a5c5e 100%);
-  --secondary: #d4a843;
-  --secondary-light: #e8c97a;
-  --secondary-dark: #b8922e;
-  --accent: #2c7a7b;
-  --success: #2b9348;
+  /* Official Nakuru County Colors */
+  --county-green: #0a3d3b;
+  --county-green-light: #1a5c59;
+  --county-green-dark: #062c2a;
+  --county-gold: #c49a1b;
+  --county-gold-light: #dab447;
+  --county-gold-dark: #9e7a16;
+  --county-cream: #f5f2e8;
+  --county-cream-dark: #e8e3d6;
+  
+  /* Functional Colors */
+  --primary: var(--county-green);
+  --primary-light: var(--county-green-light);
+  --primary-dark: var(--county-green-dark);
+  --secondary: var(--county-gold);
+  --secondary-light: var(--county-gold-light);
+  --secondary-dark: var(--county-gold-dark);
+  --bg-light: var(--county-cream);
+  --bg-lighter: #faf8f2;
+  
+  /* Accent Colors */
+  --success: #2b7a3e;
   --success-light: #e6f4ea;
-  --warning: #e9c46a;
+  --warning: #d4a843;
   --warning-light: #fef8e7;
-  --danger: #e76f51;
+  --danger: #c0392b;
   --danger-light: #fef3f0;
-  --info: #4a90e2;
+  --info: #2c7a7b;
   --info-light: #eef4fe;
+  
+  /* Grays */
   --gray-50: #f9fafb;
   --gray-100: #f3f4f6;
   --gray-200: #e5e7eb;
@@ -33,18 +46,26 @@
   --gray-800: #1f2937;
   --gray-900: #111827;
   
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--county-green) 0%, var(--county-green-light) 100%);
+  --gradient-secondary: linear-gradient(135deg, var(--county-gold) 0%, var(--county-gold-light) 100%);
+  --gradient-hero: linear-gradient(135deg, var(--county-green-dark) 0%, var(--county-green) 50%, var(--county-green-light) 100%);
+  
+  /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   
+  /* Border Radius */
   --radius-sm: 0.5rem;
   --radius-md: 0.75rem;
   --radius-lg: 1rem;
   --radius-xl: 1.5rem;
   --radius-2xl: 2rem;
   
+  /* Transitions */
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -56,23 +77,16 @@
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background: linear-gradient(135deg, #f5f7fa 0%, #eef2f5 100%);
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: var(--bg-light);
   color: var(--gray-700);
   min-height: 100vh;
   line-height: 1.5;
 }
 
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-  line-height: 1.25;
-  color: var(--gray-800);
-}
-
 /* Header Styles */
 .site-header {
-  background: var(--primary-gradient);
+  background: var(--gradient-hero);
   padding: 1.25rem 2rem;
   display: flex;
   align-items: center;
@@ -81,26 +95,18 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: var(--shadow-lg);
   position: relative;
   z-index: 10;
-}
-
-.site-header::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--secondary), var(--primary-light), var(--secondary));
+  border-bottom: 3px solid var(--secondary);
 }
 
 .logo {
-  height: 70px;
+  height: 75px;
   width: auto;
   background: white;
-  padding: 8px 12px;
-  border-radius: var(--radius-md);
+  padding: 8px 16px;
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   transition: var(--transition);
+  object-fit: contain;
 }
 
 .logo:hover {
@@ -114,6 +120,7 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
   letter-spacing: -0.025em;
   margin-bottom: 0.25rem;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 .header-subtitle {
@@ -130,7 +137,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Form Intro Card */
 .form-intro {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  background: var(--gradient-primary);
   border-radius: var(--radius-xl);
   padding: 1.5rem 2rem;
   margin-bottom: 2rem;
@@ -166,7 +173,7 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.01em;
 }
 
-/* Main Form Card */
+/* Form Card */
 .form-card {
   background: white;
   border-radius: var(--radius-2xl);
@@ -174,10 +181,11 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
   margin-bottom: 2rem;
   transition: var(--transition);
+  border: 1px solid rgba(10, 61, 59, 0.1);
 }
 
 .form-card:hover {
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 25px 50px -12px rgba(10, 61, 59, 0.25);
 }
 
 form {
@@ -226,7 +234,7 @@ input, select, textarea {
 input:focus, select:focus, textarea:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(15, 59, 60, 0.1);
+  box-shadow: 0 0 0 3px rgba(10, 61, 59, 0.1);
 }
 
 input:hover, select:hover {
@@ -246,15 +254,11 @@ input:hover, select:hover {
   gap: 0.5rem;
 }
 
-.email-note i {
-  font-size: 0.75rem;
-}
-
-/* File Upload Zone */
+/* File Upload */
 .file-upload-wrapper {
   border: 2px dashed var(--gray-300);
   border-radius: var(--radius-lg);
-  background: var(--gray-50);
+  background: var(--bg-lighter);
   transition: var(--transition);
   cursor: pointer;
   position: relative;
@@ -266,7 +270,7 @@ input:hover, select:hover {
 
 .file-upload-wrapper:hover {
   border-color: var(--primary);
-  background: #f8fafc;
+  background: #faf8f2;
 }
 
 .file-upload-wrapper.drag-over {
@@ -294,16 +298,6 @@ input:hover, select:hover {
   color: var(--gray-500);
 }
 
-.file-upload-wrapper input[type="file"] {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  cursor: pointer;
-}
-
 /* File Preview */
 .file-preview-container {
   margin-top: 1rem;
@@ -312,21 +306,6 @@ input:hover, select:hover {
   padding: 1rem;
   display: none;
   border: 1px solid var(--gray-200);
-}
-
-.file-preview-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--gray-200);
-}
-
-.file-count, .total-size {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--gray-600);
 }
 
 .file-item {
@@ -343,38 +322,10 @@ input:hover, select:hover {
 
 .file-item:hover {
   border-color: var(--primary);
-  box-shadow: var(--shadow-sm);
-}
-
-.file-item i {
-  font-size: 1.25rem;
 }
 
 .file-item.valid i { color: var(--success); }
 .file-item.error i { color: var(--danger); }
-
-.file-info {
-  flex: 1;
-}
-
-.file-name {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--gray-700);
-}
-
-.file-size {
-  font-size: 0.7rem;
-  color: var(--gray-400);
-  margin-left: 0.5rem;
-}
-
-.file-status {
-  font-size: 0.7rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 9999px;
-  font-weight: 600;
-}
 
 .file-status.valid {
   background: var(--success-light);
@@ -386,111 +337,14 @@ input:hover, select:hover {
   color: var(--danger);
 }
 
-/* Validation Messages */
-.validation-message {
-  font-size: 0.75rem;
-  margin-top: 0.5rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: var(--radius-sm);
-  display: none;
-}
-
-.validation-message.success {
-  display: block;
-  background: var(--success-light);
-  color: var(--success);
-}
-
-.validation-message.error {
-  display: block;
-  background: var(--danger-light);
-  color: var(--danger);
-}
-
-/* Progress Bar */
-.progress-container {
-  height: 6px;
-  background: var(--gray-200);
-  border-radius: 9999px;
-  overflow: hidden;
-  margin: 1.5rem 0;
-  display: none;
-}
-
-.progress-bar {
-  height: 100%;
-  background: var(--primary-gradient);
-  width: 0%;
-  transition: width 0.3s ease;
-  border-radius: 9999px;
-}
-
-.upload-progress-text {
-  text-align: center;
-  font-size: 0.75rem;
-  color: var(--gray-500);
-  margin: 0.5rem 0;
-  display: none;
-}
-
-/* Spinner */
-.spinner {
-  display: none;
-  text-align: center;
-  margin: 2rem 0;
-}
-
-.spinner i {
-  font-size: 2rem;
-  color: var(--primary);
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* Message Banners */
-.success, .error {
-  padding: 1rem;
-  border-radius: var(--radius-lg);
-  margin: 1rem 0;
-  display: none;
-  align-items: center;
-  gap: 0.75rem;
-  animation: slideIn 0.3s ease;
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.success {
-  background: var(--success-light);
-  color: var(--success);
-  border: 1px solid rgba(43, 147, 72, 0.2);
-}
-
-.error {
-  background: var(--danger-light);
-  color: var(--danger);
-  border: 1px solid rgba(231, 111, 81, 0.2);
-}
-
 /* Buttons */
-.upload-btn, .install-btn {
+.upload-btn {
   width: 100%;
   padding: 1rem;
   font-size: 1rem;
   font-weight: 600;
-  font-family: 'Inter', sans-serif;
+  background: var(--gradient-primary);
+  color: white;
   border: none;
   border-radius: var(--radius-lg);
   cursor: pointer;
@@ -499,13 +353,8 @@ input:hover, select:hover {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-}
-
-.upload-btn {
-  background: var(--primary-gradient);
-  color: white;
-  box-shadow: var(--shadow-md);
   margin-top: 1rem;
+  box-shadow: var(--shadow-md);
 }
 
 .upload-btn:hover:not(:disabled) {
@@ -519,8 +368,20 @@ input:hover, select:hover {
 }
 
 .install-btn {
+  width: 100%;
+  padding: 0.875rem;
+  font-size: 0.875rem;
+  font-weight: 600;
   background: linear-gradient(135deg, var(--gray-600), var(--gray-700));
   color: white;
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
   margin-top: 0.75rem;
 }
 
@@ -536,58 +397,27 @@ input:hover, select:hover {
   padding: 1.5rem;
   box-shadow: var(--shadow-lg);
   margin-top: 2rem;
-}
-
-.history-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid var(--gray-100);
+  border: 1px solid rgba(10, 61, 59, 0.1);
 }
 
 .history-title {
+  color: var(--primary);
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 1.125rem;
-  color: var(--gray-800);
-}
-
-.refresh-btn {
-  background: transparent;
-  border: none;
-  color: var(--gray-400);
-  cursor: pointer;
-  font-size: 1rem;
-  padding: 0.5rem;
-  border-radius: var(--radius-sm);
-  transition: var(--transition);
 }
 
 .refresh-btn:hover {
-  color: var(--primary);
+  color: var(--secondary);
   transform: rotate(180deg);
-}
-
-.history-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
 }
 
 .history-item {
   padding: 1rem;
-  background: var(--gray-50);
+  background: var(--bg-lighter);
   border-radius: var(--radius-lg);
   border: 1px solid var(--gray-200);
   transition: var(--transition);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
 }
 
 .history-item:hover {
@@ -595,170 +425,14 @@ input:hover, select:hover {
   box-shadow: var(--shadow-sm);
 }
 
-.upload-name {
-  font-weight: 600;
-  color: var(--gray-800);
-  display: block;
-  margin-bottom: 0.25rem;
-}
-
-.upload-meta {
-  font-size: 0.7rem;
-  color: var(--gray-500);
-}
-
 .upload-status {
-  font-size: 0.7rem;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
   background: var(--success-light);
   color: var(--success);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.empty-history {
-  text-align: center;
-  padding: 3rem;
-  color: var(--gray-400);
-}
-
-.empty-history i {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  display: block;
-}
-
-/* Save Status Toast */
-.save-status {
-  position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  background: var(--gray-800);
-  color: white;
-  padding: 0.75rem 1.25rem;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  display: none;
-  align-items: center;
-  gap: 0.5rem;
-  z-index: 1000;
-  box-shadow: var(--shadow-lg);
-  animation: slideUp 0.3s ease;
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.save-status.saved {
-  background: var(--success);
-}
-
-.save-status.saving {
-  background: var(--warning);
-  color: var(--gray-800);
 }
 
 /* Modal */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
-}
-
-.modal {
-  background: white;
-  border-radius: var(--radius-xl);
-  max-width: 400px;
-  width: 90%;
-  overflow: hidden;
-  animation: modalSlideIn 0.3s ease;
-}
-
-@keyframes modalSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .modal-header {
-  background: var(--primary-gradient);
-  padding: 1.25rem 1.5rem;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.modal-header h3 {
-  color: white;
-  font-size: 1.125rem;
-}
-
-.modal-close {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-  width: 2rem;
-  height: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-sm);
-  transition: var(--transition);
-}
-
-.modal-close:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.modal-body {
-  padding: 1.5rem;
-}
-
-.modal-message {
-  margin-bottom: 1.5rem;
-  color: var(--gray-600);
-}
-
-.modal-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.75rem;
-}
-
-.modal-btn {
-  padding: 0.5rem 1.25rem;
-  border-radius: var(--radius-md);
-  font-weight: 500;
-  cursor: pointer;
-  transition: var(--transition);
-  border: none;
-  font-size: 0.875rem;
+  background: var(--gradient-primary);
 }
 
 .modal-btn-primary {
@@ -770,51 +444,33 @@ input:hover, select:hover {
   background: var(--primary-light);
 }
 
-.modal-btn-secondary {
-  background: var(--gray-200);
-  color: var(--gray-700);
-}
-
-.modal-btn-secondary:hover {
-  background: var(--gray-300);
-}
-
 /* Footer */
 .site-footer {
-  text-align: center;
-  padding: 2rem;
-  background: white;
-  border-top: 1px solid var(--gray-200);
-  color: var(--gray-500);
-  font-size: 0.75rem;
-  margin-top: 3rem;
+  background: var(--primary-dark);
+  color: rgba(255,255,255,0.7);
+  border-top: 2px solid var(--secondary);
 }
 
-.footer-credit {
-  margin-top: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
+.site-footer .footer-credit {
+  color: rgba(255,255,255,0.5);
 }
 
-#connectionStatus {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
+#connectionStatus.online {
+  color: var(--success);
 }
 
-/* Screen Reader Only */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
+#connectionStatus.offline {
+  color: var(--danger);
+}
+
+/* Save Status Toast */
+.save-status.saved {
+  background: var(--success);
+}
+
+.save-status.saving {
+  background: var(--secondary);
+  color: var(--primary-dark);
 }
 
 /* Responsive */
@@ -825,12 +481,12 @@ input:hover, select:hover {
     padding: 1rem;
   }
   
-  .header-texts h1 {
-    font-size: 1.25rem;
+  .logo {
+    height: 55px;
   }
   
-  .container {
-    padding: 0 1rem;
+  .header-texts h1 {
+    font-size: 1.25rem;
   }
   
   form {
@@ -844,31 +500,14 @@ input:hover, select:hover {
   .form-intro span {
     font-size: 0.875rem;
   }
-  
-  .history-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .save-status {
-    bottom: 1rem;
-    right: 1rem;
-    left: 1rem;
-    text-align: center;
-    justify-content: center;
-  }
 }
 
 /* Print Styles */
 @media print {
-  .site-header, .upload-btn, .install-btn, .file-upload-wrapper, 
+  .site-header, .upload-btn, .install-btn, .file-upload-wrapper,
   .progress-container, .spinner, .save-status, .modal-overlay,
   .site-footer, .refresh-btn {
     display: none !important;
-  }
-  
-  body {
-    background: white;
   }
   
   .form-card {
