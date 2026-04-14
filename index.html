@@ -5,21 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>CCNO Evidence Portal | Nakuru County</title>
 
-<!-- PWA Configuration -->
-<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="style.css">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0a3d3b">
+<!-- PWA Configuration - Fixed -->
+<link rel="manifest" href="/ccno-evidence-upload2/manifest.json">
 
-<!-- iOS Support -->
+<!-- Mobile Web App Capabilities (Fixed deprecated warnings) -->
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="apple-touch-icon" href="/images/LOGO.png">
 
-<!-- Windows Support -->
+<!-- Theme Colors -->
+<meta name="theme-color" content="#0a3d3b">
 <meta name="msapplication-TileColor" content="#0a3d3b">
-<meta name="msapplication-TileImage" content="/images/LOGO.png">
+
+<!-- Icons - All paths now correct -->
+<link rel="icon" type="image/x-icon" href="/ccno-evidence-upload2/images/favicon.ico">
+<link rel="shortcut icon" href="/ccno-evidence-upload2/images/favicon.ico">
+<link rel="apple-touch-icon" href="/ccno-evidence-upload2/images/LOGO.png">
+<meta name="msapplication-TileImage" content="/ccno-evidence-upload2/images/LOGO.png">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- External Stylesheet -->
+<link rel="stylesheet" href="/ccno-evidence-upload2/style.css">
 </head>
 <body>
 
@@ -45,7 +56,7 @@
 
 <!-- Header -->
 <header class="site-header">
-  <img src="/images/LOGO.png" alt="Nakuru County Logo" class="logo">
+  <img src="/ccno-evidence-upload2/images/LOGO.png" alt="Nakuru County Logo" class="logo">
   <div class="header-texts">
     <h1>Nakuru County CCNO Evidence Upload System</h1>
     <p class="header-subtitle">Program Evidence Submission Portal • Fiscal Year 2025/2026</p>
@@ -103,10 +114,17 @@
         <label for="subCounty"><i class="fas fa-map-marker-alt"></i> Sub County</label>
         <select id="subCounty" required>
           <option value="">Select Sub County</option>
-          <option>Nakuru West</option><option>Nakuru East</option><option>Nakuru North</option>
-          <option>Naivasha</option><option>Rongai</option><option>Kuresoi South</option>
-          <option>Kuresoi North</option><option>Subukia</option><option>Molo</option>
-          <option>Njoro</option><option>Gilgil</option>
+          <option>Nakuru West</option>
+          <option>Nakuru East</option>
+          <option>Nakuru North</option>
+          <option>Naivasha</option>
+          <option>Rongai</option>
+          <option>Kuresoi South</option>
+          <option>Kuresoi North</option>
+          <option>Subukia</option>
+          <option>Molo</option>
+          <option>Njoro</option>
+          <option>Gilgil</option>
         </select>
         <div class="validation-message" id="subCountyValidation"></div>
       </div>
@@ -119,7 +137,7 @@
           <div class="drag-drop-text">
             <i class="fas fa-cloud-upload-alt"></i>
             <span>Drag & drop PDF files here or click to browse</span>
-            <small>Max 10 files • 10MB each</small>
+            <small>Max 10 files • 10MB each • 50MB total</small>
           </div>
         </div>
         <div class="validation-message" id="filesValidation"></div>
@@ -165,6 +183,7 @@
     <div class="empty-history" id="emptyHistory">
       <i class="fas fa-inbox"></i>
       <p>No submissions yet</p>
+      <span>Your upload history will appear here</span>
     </div>
   </div>
 </main>
@@ -262,7 +281,9 @@ function showError(msg) {
   elements.error.style.display = 'flex';
   elements.success.style.display = 'none';
   elements.liveRegion.textContent = `Error: ${msg}`;
-  setTimeout(() => { if (elements.error.style.display === 'flex') elements.error.style.display = 'none'; }, 5000);
+  setTimeout(() => { 
+    if (elements.error.style.display === 'flex') elements.error.style.display = 'none'; 
+  }, 5000);
 }
 
 function showSuccess(msg) {
@@ -270,7 +291,9 @@ function showSuccess(msg) {
   elements.success.style.display = 'flex';
   elements.error.style.display = 'none';
   elements.liveRegion.textContent = msg;
-  setTimeout(() => { if (elements.success.style.display === 'flex') elements.success.style.display = 'none'; }, 5000);
+  setTimeout(() => { 
+    if (elements.success.style.display === 'flex') elements.success.style.display = 'none'; 
+  }, 5000);
 }
 
 function showSaveStatus(msg, type = 'saved') {
@@ -409,7 +432,7 @@ elements.fileDropZone.addEventListener('click', () => elements.files.click());
 // Load Indicators from external JSON
 function loadIndicators() {
   elements.category.innerHTML = '<option value="">Loading categories...</option>';
-  fetch('indicators.json')
+  fetch('/ccno-evidence-upload2/indicators.json')
     .then(res => res.ok ? res.json() : Promise.reject())
     .then(data => {
       indicatorsData = data;
@@ -431,6 +454,8 @@ function loadIndicators() {
             opt.textContent = ind;
             elements.indicator.appendChild(opt);
           });
+        } else {
+          elements.indicator.disabled = true;
         }
       });
       showSaveStatus('Categories loaded', 'saved');
@@ -503,7 +528,10 @@ function loadHistory() {
       const div = document.createElement('div');
       div.className = 'history-item';
       div.innerHTML = `
-        <div><span class="upload-name">${escapeHtml(item.name)}</span><div class="upload-meta">${formatted} • ${item.filesCount} file(s) • ${formatBytes(item.totalSize)}</div></div>
+        <div class="upload-info">
+          <span class="upload-name">${escapeHtml(item.name)}</span>
+          <div class="upload-meta">${formatted} • ${item.filesCount} file(s) • ${formatBytes(item.totalSize)}</div>
+        </div>
         <span class="upload-status"><i class="fas fa-check-circle"></i> Completed</span>
       `;
       elements.historyList.appendChild(div);
@@ -660,6 +688,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
 // Initialization
 window.addEventListener('load', () => {
+  console.log('CCNO Portal v3.0 - Ready');
   updateConnectionStatus();
   loadIndicators();
   loadHistory();
