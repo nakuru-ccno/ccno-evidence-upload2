@@ -21,12 +21,11 @@
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<!-- External Stylesheet - ALL STYLES COME FROM HERE -->
+<!-- External Stylesheet -->
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
-<a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="sr-only" aria-live="polite" aria-atomic="true" id="liveRegion"></div>
 
 <!-- Custom Modal Component -->
@@ -50,20 +49,14 @@
   <img src="/images/LOGO.png" alt="Nakuru County Logo" class="logo" onerror="this.src='https://placehold.co/70x70?text=Nakuru'">
   <div class="header-texts">
     <h1>Nakuru County CCNO PC Evidence Upload System</h1>
+    <p class="header-subtitle">Program Evidence Submission Portal • Fiscal Year 2025/2026</p>
   </div>
 </header>
-
-<nav class="breadcrumb" aria-label="Breadcrumb">
-  <ol>
-    <li><a href="/">Home</a></li>
-    <li><a href="#main-content" aria-current="page">Upload Evidence</a></li>
-  </ol>
-</nav>
 
 <main id="main-content" class="container">
   <div class="form-intro">
     <i class="fas fa-cloud-upload-alt"></i>
-    <span>Upload PC Evidence for FY 2025/2026</span>
+    <span>Submit Program Evidence Documents</span>
   </div>
 
   <form id="uploadForm">
@@ -143,7 +136,7 @@
 
     <!-- File Upload with Drag & Drop -->
     <div class="form-group required">
-      <label for="files"><i class="fas fa-file-pdf"></i> Choose PDF file(s)</label>
+      <label for="files"><i class="fas fa-file-pdf"></i> Upload PDF Documents</label>
       <div class="file-upload-wrapper" id="fileDropZone" role="region" aria-label="File upload area" tabindex="0">
         <input type="file" id="files" accept="application/pdf" multiple required aria-label="Choose PDF files" />
         <div class="drag-drop-text">
@@ -181,7 +174,7 @@
     
     <!-- Install PWA Button -->
     <button type="button" id="installBtn" class="install-btn" style="display: none;">
-      <i class="fas fa-download"></i> Install App
+      <i class="fas fa-download"></i> Install Application
     </button>
   </form>
 
@@ -189,7 +182,7 @@
   <div class="uploads-history" id="historySection" style="display: none;">
     <div class="history-header">
       <h3 class="history-title">
-        <i class="fas fa-history"></i> Recent Uploads
+        <i class="fas fa-history"></i> Recent Submissions
       </h3>
       <button class="refresh-btn" id="refreshHistory" title="Refresh">
         <i class="fas fa-sync-alt"></i>
@@ -200,7 +193,7 @@
     
     <div class="empty-history" id="emptyHistory">
       <i class="fas fa-inbox"></i>
-      <p>No uploads yet. Submit your first evidence to see history here.</p>
+      <p>No submissions yet. Upload your first evidence document.</p>
     </div>
   </div>
 </main>
@@ -224,7 +217,6 @@ const BASE_URL = window.location.origin;
 const PROXY_URL = "https://nccnoproxyy.onrender.com/upload-evidence";
 
 console.log('Running as PWA:', IS_PWA);
-console.log('Base URL:', BASE_URL);
 
 // ===== SERVICE WORKER REGISTRATION =====
 if ('serviceWorker' in navigator) {
@@ -520,7 +512,7 @@ function loadIndicators() {
       return response.json();
     })
     .then(data => {
-      console.log('Indicators loaded successfully:', data);
+      console.log('Indicators loaded successfully');
       indicatorsData = data;
       
       categorySelect.innerHTML = '<option value="">Select Evidence Category</option>';
@@ -902,16 +894,13 @@ window.addEventListener('load', async () => {
   setTimeout(() => loadDraft(), 500);
   officerEmailInput.focus();
   setInterval(saveDraft, 30000);
-  console.log('App initialized successfully');
+  console.log('Application initialized successfully');
 });
 
 window.addEventListener('beforeunload', (e) => {
   if (officerEmailInput.value || evidenceNameInput.value || categorySelect.value) {
     if (!isUploading) {
       saveDraft();
-      e.preventDefault();
-      e.returnValue = 'You have unsaved changes. Are you sure you want to leave?';
-      return e.returnValue;
     }
   }
 });
