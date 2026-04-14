@@ -6,22 +6,22 @@
 <title>CCNO Evidence Portal | Nakuru County</title>
 
 <!-- PWA Configuration -->
-<link rel="manifest" href="/manifest.json">
+<link rel="manifest" href="/ccno-evidence-upload2/manifest.json">
 <meta name="theme-color" content="#4f46e5">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="apple-touch-icon" href="/images/LOGO.png">
+<link rel="apple-touch-icon" href="/ccno-evidence-upload2/images/LOGO.png">
 <meta name="msapplication-TileColor" content="#4f46e5">
-<meta name="msapplication-TileImage" content="/images/LOGO.png">
+<meta name="msapplication-TileImage" content="/ccno-evidence-upload2/images/LOGO.png">
 
 <!-- Favicon -->
-<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-<link rel="shortcut icon" href="/images/favicon.ico">
+<link rel="icon" type="image/x-icon" href="/ccno-evidence-upload2/images/favicon.ico">
+<link rel="shortcut icon" href="/ccno-evidence-upload2/images/favicon.ico">
 
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<!-- External Stylesheet -->
+<!-- External Stylesheet - FIXED PATH -->
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -46,7 +46,7 @@
 </div>
 
 <header class="site-header">
-  <img src="/images/LOGO.png" alt="Nakuru County Logo" class="logo" onerror="this.src='https://placehold.co/70x70?text=Nakuru'">
+  <img src="/ccno-evidence-upload2/images/LOGO.png" alt="Nakuru County Logo" class="logo" onerror="this.src='https://placehold.co/70x70?text=Nakuru'">
   <div class="header-texts">
     <h1>Nakuru County CCNO PC Evidence Upload System</h1>
     <p class="header-subtitle">Program Evidence Submission Portal • Fiscal Year 2025/2026</p>
@@ -214,14 +214,16 @@
 // ===== BASE URL DETECTION =====
 const IS_PWA = window.matchMedia('(display-mode: standalone)').matches;
 const BASE_URL = window.location.origin;
+const REPO_NAME = '/ccno-evidence-upload2';
 const PROXY_URL = "https://nccnoproxyy.onrender.com/upload-evidence";
 
 console.log('Running as PWA:', IS_PWA);
+console.log('Repository path:', REPO_NAME);
 
 // ===== SERVICE WORKER REGISTRATION =====
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
+    navigator.serviceWorker.register(REPO_NAME + '/sw.js')
       .then(registration => console.log('✅ Service Worker registered:', registration))
       .catch(error => console.error('❌ Service Worker registration failed:', error));
   });
@@ -499,35 +501,49 @@ fileDropZone.addEventListener('drop', (e) => {
 
 filesInput.addEventListener('change', updateFilePreview);
 
-// ===== LOAD INDICATORS =====
+// ===== LOAD INDICATORS FROM EXTERNAL JSON =====
 function loadIndicators() {
-  console.log('Loading indicators from /indicators.json...');
+  const indicatorsPath = REPO_NAME + '/indicators.json';
+  console.log('🔄 Loading indicators from:', indicatorsPath);
   categorySelect.innerHTML = '<option value="">Loading categories...</option>';
   indicatorSelect.innerHTML = '<option value="">Loading indicators...</option>';
   indicatorSelect.disabled = true;
   
-  fetch('/indicators.json')
+  fetch(indicatorsPath)
     .then(response => {
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      console.log('✅ indicators.json fetch successful');
       return response.json();
     })
     .then(data => {
-      console.log('Indicators loaded successfully');
+      console.log('📊 Indicators data loaded:', data);
+      console.log('📋 Available categories:', Object.keys(data));
       indicatorsData = data;
       
       categorySelect.innerHTML = '<option value="">Select Evidence Category</option>';
-      Object.keys(data).forEach(category => {
+      const categories = Object.keys(data);
+      
+      if (categories.length === 0) {
+        throw new Error('No categories found in indicators.json');
+      }
+      
+      categories.forEach(category => {
         const opt = document.createElement("option");
         opt.value = category;
         opt.textContent = category;
         categorySelect.appendChild(opt);
       });
       
+      categorySelect.disabled = false;
+      console.log(`✅ Loaded ${categories.length} categories`);
+      
       categorySelect.addEventListener("change", () => {
         const selected = categorySelect.value;
+        console.log(`📂 Category selected: ${selected}`);
         indicatorSelect.innerHTML = '<option value="">Select Indicator</option>';
         if (data[selected]) {
           indicatorSelect.disabled = false;
+          console.log(`📊 Loading ${data[selected].length} indicators for ${selected}`);
           data[selected].forEach(ind => {
             const opt = document.createElement("option");
             opt.value = ind;
@@ -536,13 +552,21 @@ function loadIndicators() {
           });
         } else {
           indicatorSelect.disabled = true;
+          console.warn(`⚠️ No indicators found for category: ${selected}`);
         }
       });
+      
+      showSaveStatus(`Loaded ${categories.length} categories from indicators.json`, 'saved');
+      liveRegion.textContent = `Indicators loaded successfully. ${categories.length} categories available.`;
     })
     .catch(err => {
-      console.error("Error loading indicators.json:", err);
-      categorySelect.innerHTML = '<option value="">Error - Using Fallback</option>';
+      console.error('❌ Error loading indicators.json:', err);
+      console.error('❌ Failed path:', indicatorsPath);
+      categorySelect.innerHTML = '<option value="">Error - Check Console</option>';
+      showError('Unable to load indicators. Please refresh the page.');
       
+      // FALLBACK DATA - ensure functionality even if JSON fails
+      console.log('📦 Using fallback indicator data');
       const fallbackData = {
         "Maternal Health": ["ANC 1st Visit", "ANC 4th Visit", "Skilled Delivery", "Postnatal Care"],
         "Family Planning": ["Modern Contraceptive Prevalence Rate", "FP Uptake", "Long Acting Methods"],
@@ -888,13 +912,15 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
 // ===== INITIALIZATION =====
 window.addEventListener('load', async () => {
+  console.log('🚀 Application initializing...');
+  console.log('📁 Repository path:', REPO_NAME);
   updateConnectionStatus();
-  loadIndicators();
+  loadIndicators();  // This now uses the correct path
   loadHistory();
   setTimeout(() => loadDraft(), 500);
   officerEmailInput.focus();
   setInterval(saveDraft, 30000);
-  console.log('Application initialized successfully');
+  console.log('✅ Application ready');
 });
 
 window.addEventListener('beforeunload', (e) => {
