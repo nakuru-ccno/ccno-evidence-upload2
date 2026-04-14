@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>CCNO Evidence Portal | Nakuru County</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>CCNO Evidence Portal | Nakuru County</title>
 
-<!-- PWA Configuration -->
-<link rel="manifest" href="/ccno-evidence-upload2/manifest.json">
-<meta name="theme-color" content="#4f46e5">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="apple-touch-icon" href="/ccno-evidence-upload2/images/LOGO.png">
-<meta name="msapplication-TileColor" content="#4f46e5">
-<meta name="msapplication-TileImage" content="/ccno-evidence-upload2/images/LOGO.png">
+  <!-- PWA Configuration -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#0a3d3b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="/images/LOGO.png">
+  <meta name="msapplication-TileColor" content="#0a3d3b">
+  <meta name="msapplication-TileImage" content="/images/LOGO.png">
 
-<!-- Favicon -->
-<link rel="icon" type="image/x-icon" href="/ccno-evidence-upload2/images/favicon.ico">
-<link rel="shortcut icon" href="/ccno-evidence-upload2/images/favicon.ico">
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="shortcut icon" href="/images/favicon.ico">
 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<!-- External Stylesheet - FIXED PATH -->
-<link rel="stylesheet" href="style.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
+<!-- Screen reader live region -->
 <div class="sr-only" aria-live="polite" aria-atomic="true" id="liveRegion"></div>
 
 <!-- Custom Modal Component -->
@@ -45,140 +49,146 @@
   </div>
 </div>
 
+<!-- Header -->
 <header class="site-header">
-  <img src="/ccno-evidence-upload2/images/LOGO.png" alt="Nakuru County Logo" class="logo" onerror="this.src='https://placehold.co/70x70?text=Nakuru'">
+  <img src="/images/LOGO.png" alt="Nakuru County Logo" class="logo">
   <div class="header-texts">
-    <h1>Nakuru County CCNO PC Evidence Upload System</h1>
+    <h1>Nakuru County CCNO Evidence Upload System</h1>
     <p class="header-subtitle">Program Evidence Submission Portal • Fiscal Year 2025/2026</p>
   </div>
 </header>
 
+<!-- Main Content -->
 <main id="main-content" class="container">
   <div class="form-intro">
     <i class="fas fa-cloud-upload-alt"></i>
     <span>Submit Program Evidence Documents</span>
   </div>
 
-  <form id="uploadForm">
-    <!-- Officer Email -->
-    <div class="form-group required">
-      <label for="officerEmail"><i class="fas fa-envelope"></i> Officer Email</label>
-      <input 
-        list="officerEmails" 
-        id="officerEmail" 
-        placeholder="Enter any valid email address" 
-        type="email" 
-        required
-        pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
-        title="Enter a valid email address (e.g., name@example.com)"
-        aria-label="Officer email address"
-        aria-describedby="emailValidation"
-        aria-required="true"
-      />
-      <datalist id="officerEmails"></datalist>
-      <div class="validation-message" id="emailValidation"></div>
-      <div class="email-note">
-        <i class="fas fa-info-circle"></i> Enter any valid email to receive confirmation.
-      </div>
-    </div>
-
-    <!-- Evidence Name -->
-    <div class="form-group required">
-      <label for="evidenceName"><i class="fas fa-file-signature"></i> Evidence Name</label>
-      <input 
-        type="text" 
-        id="evidenceName" 
-        placeholder="e.g., CME on Family Planning Methods" 
-        required
-        aria-label="Evidence name"
-        aria-describedby="nameValidation"
-        aria-required="true"
-      />
-      <div class="validation-message" id="nameValidation"></div>
-    </div>
-
-    <!-- Category & Indicator -->
-    <div class="form-group required">
-      <label for="category"><i class="fas fa-folder"></i> Evidence Category</label>
-      <select id="category" required aria-label="Evidence category" aria-describedby="categoryValidation">
-        <option value="">Loading categories...</option>
-      </select>
-      <div class="validation-message" id="categoryValidation"></div>
-    </div>
-
-    <div class="form-group required">
-      <label for="indicator"><i class="fas fa-chart-line"></i> Indicator</label>
-      <select id="indicator" required disabled aria-label="Indicator" aria-describedby="indicatorValidation">
-        <option value="">First select a category</option>
-      </select>
-      <div class="validation-message" id="indicatorValidation"></div>
-    </div>
-
-    <!-- Sub County -->
-    <div class="form-group required">
-      <label for="subCounty"><i class="fas fa-map-marker-alt"></i> Sub County</label>
-      <select id="subCounty" required aria-label="Sub County" aria-describedby="subCountyValidation">
-        <option value="">Select Sub County</option>
-        <option value="Nakuru West Sub County">Nakuru West Sub County</option>
-        <option value="Nakuru East Sub County">Nakuru East Sub County</option>
-        <option value="Nakuru North Sub County">Nakuru North Sub County</option>
-        <option value="Naivasha Sub County">Naivasha Sub County</option>
-        <option value="Rongai Sub County">Rongai Sub County</option>
-        <option value="Kuresoi South Sub County">Kuresoi South Sub County</option>
-        <option value="Kuresoi North Sub County">Kuresoi North Sub County</option>
-        <option value="Subukia Sub County">Subukia Sub County</option>
-        <option value="Molo Sub County">Molo Sub County</option>
-        <option value="Njoro Sub County">Njoro Sub County</option>
-        <option value="Gilgil Sub County">Gilgil Sub County</option>
-      </select>
-      <div class="validation-message" id="subCountyValidation"></div>
-    </div>
-
-    <!-- File Upload with Drag & Drop -->
-    <div class="form-group required">
-      <label for="files"><i class="fas fa-file-pdf"></i> Upload PDF Documents</label>
-      <div class="file-upload-wrapper" id="fileDropZone" role="region" aria-label="File upload area" tabindex="0">
-        <input type="file" id="files" accept="application/pdf" multiple required aria-label="Choose PDF files" />
-        <div class="drag-drop-text">
-          <i class="fas fa-cloud-upload-alt"></i>
-          <span>Drag & drop files here or click to browse</span>
+  <div class="form-card">
+    <form id="uploadForm">
+      <!-- Officer Email -->
+      <div class="form-group required">
+        <label for="officerEmail"><i class="fas fa-envelope"></i> Officer Email</label>
+        <input 
+          list="officerEmails" 
+          id="officerEmail" 
+          placeholder="Enter your official email address" 
+          type="email" 
+          required
+          pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+          title="Enter a valid email address"
+          aria-label="Officer email address"
+          aria-describedby="emailValidation"
+          aria-required="true"
+        />
+        <datalist id="officerEmails"></datalist>
+        <div class="validation-message" id="emailValidation"></div>
+        <div class="email-note">
+          <i class="fas fa-info-circle"></i> Enter your official email to receive confirmation.
         </div>
       </div>
-      <div class="validation-message" id="filesValidation"></div>
+
+      <!-- Evidence Name -->
+      <div class="form-group required">
+        <label for="evidenceName"><i class="fas fa-file-signature"></i> Evidence Name</label>
+        <input 
+          type="text" 
+          id="evidenceName" 
+          placeholder="e.g., CME on Family Planning Methods" 
+          required
+          aria-label="Evidence name"
+          aria-describedby="nameValidation"
+          aria-required="true"
+        />
+        <div class="validation-message" id="nameValidation"></div>
+      </div>
+
+      <!-- Category & Indicator -->
+      <div class="form-row">
+        <div class="form-group required">
+          <label for="category"><i class="fas fa-folder"></i> Evidence Category</label>
+          <select id="category" required aria-label="Evidence category" aria-describedby="categoryValidation">
+            <option value="">Loading categories...</option>
+          </select>
+          <div class="validation-message" id="categoryValidation"></div>
+        </div>
+
+        <div class="form-group required">
+          <label for="indicator"><i class="fas fa-chart-line"></i> Indicator</label>
+          <select id="indicator" required disabled aria-label="Indicator" aria-describedby="indicatorValidation">
+            <option value="">First select a category</option>
+          </select>
+          <div class="validation-message" id="indicatorValidation"></div>
+        </div>
+      </div>
+
+      <!-- Sub County -->
+      <div class="form-group required">
+        <label for="subCounty"><i class="fas fa-map-marker-alt"></i> Sub County</label>
+        <select id="subCounty" required aria-label="Sub County" aria-describedby="subCountyValidation">
+          <option value="">Select Sub County</option>
+          <option value="Nakuru West Sub County">Nakuru West Sub County</option>
+          <option value="Nakuru East Sub County">Nakuru East Sub County</option>
+          <option value="Nakuru North Sub County">Nakuru North Sub County</option>
+          <option value="Naivasha Sub County">Naivasha Sub County</option>
+          <option value="Rongai Sub County">Rongai Sub County</option>
+          <option value="Kuresoi South Sub County">Kuresoi South Sub County</option>
+          <option value="Kuresoi North Sub County">Kuresoi North Sub County</option>
+          <option value="Subukia Sub County">Subukia Sub County</option>
+          <option value="Molo Sub County">Molo Sub County</option>
+          <option value="Njoro Sub County">Njoro Sub County</option>
+          <option value="Gilgil Sub County">Gilgil Sub County</option>
+        </select>
+        <div class="validation-message" id="subCountyValidation"></div>
+      </div>
+
+      <!-- File Upload -->
+      <div class="form-group required">
+        <label for="files"><i class="fas fa-file-pdf"></i> Upload PDF Documents</label>
+        <div class="file-upload-wrapper" id="fileDropZone" role="region" aria-label="File upload area" tabindex="0">
+          <input type="file" id="files" accept="application/pdf" multiple required aria-label="Choose PDF files" />
+          <div class="drag-drop-text">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <span>Drag & drop PDF files here or click to browse</span>
+            <small>Maximum 10 files • 10MB each • 50MB total</small>
+          </div>
+        </div>
+        <div class="validation-message" id="filesValidation"></div>
+        
+        <!-- File Preview -->
+        <div class="file-preview-container" id="filePreview">
+          <div class="file-preview-header">
+            <span class="file-count" id="fileCount">0 files</span>
+            <span class="total-size" id="totalSize">0 MB</span>
+          </div>
+          <div id="fileList"></div>
+        </div>
+      </div>
+
+      <!-- Progress Elements -->
+      <div class="spinner" id="spinner"></div>
+      <div class="progress-container" id="progressContainer">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="upload-progress-text" id="uploadText"></div>
       
-      <!-- File Preview Container -->
-      <div class="file-preview-container" id="filePreview">
-        <div class="file-preview-header">
-          <span class="file-count" id="fileCount">0 files</span>
-          <span class="total-size" id="totalSize">0 MB</span>
-        </div>
-        <div id="fileList"></div>
-      </div>
-    </div>
+      <!-- Messages -->
+      <div class="success" id="success"></div>
+      <div class="error" id="error"></div>
 
-    <!-- Progress Elements -->
-    <div class="spinner" id="spinner"></div>
-    <div class="progress-container" id="progressContainer">
-      <div class="progress-bar" id="progressBar"></div>
-    </div>
-    <div class="upload-progress-text" id="uploadText"></div>
-    
-    <!-- Messages -->
-    <div class="success" id="success"></div>
-    <div class="error" id="error"></div>
+      <!-- Action Buttons -->
+      <button type="button" id="uploadBtn" class="upload-btn" aria-live="polite">
+        <i class="fas fa-cloud-upload-alt"></i> Upload Evidence
+      </button>
+      
+      <button type="button" id="installBtn" class="install-btn" style="display: none;">
+        <i class="fas fa-download"></i> Install Application
+      </button>
+    </form>
+  </div>
 
-    <!-- Upload Button -->
-    <button type="button" id="uploadBtn" class="upload-btn" aria-live="polite">
-      <i class="fas fa-cloud-upload-alt"></i> Upload Evidence
-    </button>
-    
-    <!-- Install PWA Button -->
-    <button type="button" id="installBtn" class="install-btn" style="display: none;">
-      <i class="fas fa-download"></i> Install Application
-    </button>
-  </form>
-
-  <!-- Upload History Section -->
+  <!-- Upload History -->
   <div class="uploads-history" id="historySection" style="display: none;">
     <div class="history-header">
       <h3 class="history-title">
@@ -188,9 +198,7 @@
         <i class="fas fa-sync-alt"></i>
       </button>
     </div>
-    
     <div class="history-list" id="historyList"></div>
-    
     <div class="empty-history" id="emptyHistory">
       <i class="fas fa-inbox"></i>
       <p>No submissions yet. Upload your first evidence document.</p>
@@ -198,12 +206,12 @@
   </div>
 </main>
 
-<!-- Save Status Indicator -->
+<!-- Save Status Toast -->
 <div class="save-status" id="saveStatus"></div>
 
 <!-- Footer -->
 <footer class="site-footer">
-  <p>© 2025 Nakuru County Chief Nursing Officer. All Rights Reserved.</p>
+  <p>&copy; 2026 Nakuru County Chief Nursing Officer. All Rights Reserved.</p>
   <p class="footer-credit">
     <i class="fas fa-shield-alt"></i> Secure Evidence Upload System v3.0
     <span id="connectionStatus"></span>
@@ -211,66 +219,65 @@
 </footer>
 
 <script>
-// ===== BASE URL DETECTION =====
+// ============================================
+// NAKURU COUNTY CCNO EVIDENCE UPLOAD SYSTEM
+// Professional, Secure, Accessible
+// ============================================
+
+// Configuration
 const IS_PWA = window.matchMedia('(display-mode: standalone)').matches;
 const BASE_URL = window.location.origin;
-const REPO_NAME = '/ccno-evidence-upload2';
 const PROXY_URL = "https://nccnoproxyy.onrender.com/upload-evidence";
 
-console.log('Running as PWA:', IS_PWA);
-console.log('Repository path:', REPO_NAME);
+console.log('CCNO Portal Initialized | PWA Mode:', IS_PWA);
 
-// ===== SERVICE WORKER REGISTRATION =====
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register(REPO_NAME + '/sw.js')
-      .then(registration => console.log('✅ Service Worker registered:', registration))
-      .catch(error => console.error('❌ Service Worker registration failed:', error));
-  });
-}
+// DOM Elements
+const elements = {
+  officerEmail: document.getElementById("officerEmail"),
+  evidenceName: document.getElementById("evidenceName"),
+  category: document.getElementById("category"),
+  indicator: document.getElementById("indicator"),
+  subCounty: document.getElementById("subCounty"),
+  files: document.getElementById("files"),
+  fileDropZone: document.getElementById("fileDropZone"),
+  filePreview: document.getElementById("filePreview"),
+  fileList: document.getElementById("fileList"),
+  fileCount: document.getElementById("fileCount"),
+  totalSize: document.getElementById("totalSize"),
+  spinner: document.getElementById("spinner"),
+  success: document.getElementById("success"),
+  error: document.getElementById("error"),
+  uploadBtn: document.getElementById("uploadBtn"),
+  progressContainer: document.getElementById("progressContainer"),
+  progressBar: document.getElementById("progressBar"),
+  uploadText: document.getElementById("uploadText"),
+  historySection: document.getElementById("historySection"),
+  historyList: document.getElementById("historyList"),
+  emptyHistory: document.getElementById("emptyHistory"),
+  refreshHistory: document.getElementById("refreshHistory"),
+  installBtn: document.getElementById("installBtn"),
+  connectionStatus: document.getElementById("connectionStatus"),
+  liveRegion: document.getElementById("liveRegion"),
+  saveStatus: document.getElementById("saveStatus")
+};
 
-// ===== DOM ELEMENTS =====
-const officerEmailInput = document.getElementById("officerEmail");
-const evidenceNameInput = document.getElementById("evidenceName");
-const categorySelect = document.getElementById("category");
-const indicatorSelect = document.getElementById("indicator");
-const subCountySelect = document.getElementById("subCounty");
-const filesInput = document.getElementById("files");
-const fileDropZone = document.getElementById("fileDropZone");
-const filePreview = document.getElementById("filePreview");
-const fileList = document.getElementById("fileList");
-const fileCount = document.getElementById("fileCount");
-const totalSize = document.getElementById("totalSize");
-const spinner = document.getElementById("spinner");
-const successMsg = document.getElementById("success");
-const errorMsg = document.getElementById("error");
-const uploadBtn = document.getElementById("uploadBtn");
-const progressContainer = document.getElementById("progressContainer");
-const progressBar = document.getElementById("progressBar");
-const uploadText = document.getElementById("uploadText");
-const historySection = document.getElementById("historySection");
-const historyList = document.getElementById("historyList");
-const emptyHistory = document.getElementById("emptyHistory");
-const refreshHistory = document.getElementById("refreshHistory");
-const installBtn = document.getElementById("installBtn");
-const connectionStatus = document.getElementById("connectionStatus");
-const liveRegion = document.getElementById("liveRegion");
-const saveStatus = document.getElementById("saveStatus");
+// Modal Elements
+const modal = {
+  overlay: document.getElementById("customModal"),
+  title: document.getElementById("modalTitle"),
+  message: document.getElementById("modalMessage"),
+  confirm: document.getElementById("modalConfirm"),
+  cancel: document.getElementById("modalCancel"),
+  close: document.getElementById("modalClose")
+};
 
-// Modal elements
-const customModal = document.getElementById("customModal");
-const modalTitle = document.getElementById("modalTitle");
-const modalMessage = document.getElementById("modalMessage");
-const modalConfirm = document.getElementById("modalConfirm");
-const modalCancel = document.getElementById("modalCancel");
-const modalClose = document.getElementById("modalClose");
-
-// State variables
+// State
 let indicatorsData = null;
 let isOnline = navigator.onLine;
-let modalResolve = null;
 let isUploading = false;
 let deferredPrompt = null;
+let modalResolve = null;
+let autoSaveTimer = null;
 
 // Constants
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
@@ -278,7 +285,7 @@ const MAX_TOTAL_SIZE = 50 * 1024 * 1024;
 const csrfToken = Math.random().toString(36).substring(2);
 localStorage.setItem('csrfToken', csrfToken);
 
-// ===== HELPER FUNCTIONS =====
+// ===== UTILITY FUNCTIONS =====
 function formatBytes(bytes) {
   if (bytes === 0) return '0 Bytes';
   const k = 1024;
@@ -291,60 +298,70 @@ function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+function escapeHtml(str) {
+  if (!str) return '';
+  return str.replace(/[&<>]/g, function(m) {
+    if (m === '&') return '&amp;';
+    if (m === '<') return '&lt;';
+    if (m === '>') return '&gt;';
+    return m;
+  });
+}
+
 function showError(msg) {
-  errorMsg.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${msg}`;
-  errorMsg.style.display = "flex";
-  successMsg.style.display = "none";
-  liveRegion.textContent = `Error: ${msg}`;
+  elements.error.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${msg}`;
+  elements.error.style.display = "flex";
+  elements.success.style.display = "none";
+  elements.liveRegion.textContent = `Error: ${msg}`;
   setTimeout(() => {
-    if (errorMsg.style.display === "flex") errorMsg.style.display = "none";
+    if (elements.error.style.display === "flex") elements.error.style.display = "none";
   }, 5000);
 }
 
 function showSuccess(msg) {
-  successMsg.innerHTML = `<i class="fas fa-check-circle"></i> ${msg}`;
-  successMsg.style.display = "flex";
-  errorMsg.style.display = "none";
-  liveRegion.textContent = msg;
+  elements.success.innerHTML = `<i class="fas fa-check-circle"></i> ${msg}`;
+  elements.success.style.display = "flex";
+  elements.error.style.display = "none";
+  elements.liveRegion.textContent = msg;
   setTimeout(() => {
-    if (successMsg.style.display === "flex") successMsg.style.display = "none";
+    if (elements.success.style.display === "flex") elements.success.style.display = "none";
   }, 5000);
 }
 
 function showSaveStatus(message, type = 'saved') {
-  saveStatus.innerHTML = `<i class="fas fa-${type === 'saving' ? 'spinner fa-spin' : 'check-circle'}"></i><span>${message}</span>`;
-  saveStatus.className = `save-status ${type}`;
-  saveStatus.style.display = 'flex';
+  elements.saveStatus.innerHTML = `<i class="fas fa-${type === 'saving' ? 'spinner fa-spin' : 'check-circle'}"></i><span>${message}</span>`;
+  elements.saveStatus.className = `save-status ${type}`;
+  elements.saveStatus.style.display = 'flex';
   setTimeout(() => {
-    saveStatus.style.display = 'none';
+    elements.saveStatus.style.display = 'none';
   }, 3000);
 }
 
 function showModal(title, message, confirmText = 'Confirm', cancelText = 'Cancel') {
   return new Promise((resolve) => {
-    modalTitle.textContent = title;
-    modalMessage.textContent = message;
-    modalConfirm.textContent = confirmText;
-    modalCancel.textContent = cancelText;
+    modal.title.textContent = title;
+    modal.message.textContent = message;
+    modal.confirm.textContent = confirmText;
+    modal.cancel.textContent = cancelText;
     modalResolve = resolve;
-    customModal.style.display = 'flex';
-    modalConfirm.focus();
+    modal.overlay.style.display = 'flex';
+    modal.confirm.focus();
   });
 }
 
 function closeModal(result = false) {
-  customModal.style.display = 'none';
+  modal.overlay.style.display = 'none';
   if (modalResolve) modalResolve(result);
 }
 
-modalConfirm.addEventListener('click', () => closeModal(true));
-modalCancel.addEventListener('click', () => closeModal(false));
-modalClose.addEventListener('click', () => closeModal(false));
-customModal.addEventListener('click', (e) => {
-  if (e.target === customModal) closeModal(false);
+modal.confirm.addEventListener('click', () => closeModal(true));
+modal.cancel.addEventListener('click', () => closeModal(false));
+modal.close.addEventListener('click', () => closeModal(false));
+modal.overlay.addEventListener('click', (e) => {
+  if (e.target === modal.overlay) closeModal(false);
 });
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && customModal.style.display === 'flex') closeModal(false);
+  if (e.key === 'Escape' && modal.overlay.style.display === 'flex') closeModal(false);
 });
 
 // ===== FILE VALIDATION =====
@@ -363,10 +380,10 @@ async function validateFileSafety(file) {
       return;
     }
     
-    const suspiciousPatterns = [/\.exe$/i, /\.js$/i, /\.vbs$/i, /\.bat$/i, /\.cmd$/i, /\.scr$/i, /\.pif$/i, /\.com$/i, /\.jar$/i];
-    for (const pattern of suspiciousPatterns) {
+    const suspicious = [/\.exe$/i, /\.js$/i, /\.vbs$/i, /\.bat$/i, /\.cmd$/i, /\.scr$/i, /\.pif$/i, /\.com$/i, /\.jar$/i];
+    for (const pattern of suspicious) {
       if (pattern.test(file.name)) {
-        reject(new Error('File type not allowed for security reasons'));
+        reject(new Error('File type not allowed'));
         return;
       }
     }
@@ -380,12 +397,12 @@ async function validateFileSafety(file) {
     reader.onload = (e) => {
       const arr = new Uint8Array(e.target.result);
       if (arr.length < 4) {
-        reject(new Error('File is too small to be a valid PDF'));
+        reject(new Error('Invalid PDF file'));
         return;
       }
       const header = Array.from(arr.slice(0, 4)).map(b => b.toString(16).padStart(2, '0')).join('');
       if (header !== '25504446' && header.substring(0, 6) !== '252150') {
-        reject(new Error('Invalid PDF: Not a valid PDF document'));
+        reject(new Error('Not a valid PDF document'));
         return;
       }
       resolve();
@@ -397,23 +414,21 @@ async function validateFileSafety(file) {
 
 // ===== FILE PREVIEW =====
 async function updateFilePreview() {
-  const files = Array.from(filesInput.files);
+  const files = Array.from(elements.files.files);
   
   if (files.length === 0) {
-    filePreview.style.display = 'none';
+    elements.filePreview.style.display = 'none';
     return;
   }
   
-  filePreview.style.display = 'block';
-  fileList.innerHTML = '';
+  elements.filePreview.style.display = 'block';
+  elements.fileList.innerHTML = '';
   
   let totalBytes = 0;
   let hasErrors = false;
   
-  for (let i = 0; i < files.length; i++) {
-    const file = files[i];
+  for (const file of files) {
     totalBytes += file.size;
-    
     let status = 'pending';
     let statusText = 'Checking...';
     let icon = 'fa-spinner fa-spin';
@@ -440,13 +455,13 @@ async function updateFilePreview() {
       </div>
       <span class="file-status ${status}">${statusText}</span>
     `;
-    fileList.appendChild(fileItem);
+    elements.fileList.appendChild(fileItem);
   }
   
   if (totalBytes > MAX_TOTAL_SIZE) {
-    const totalErrorItem = document.createElement('div');
-    totalErrorItem.className = 'file-item error';
-    totalErrorItem.innerHTML = `
+    const totalError = document.createElement('div');
+    totalError.className = 'file-item error';
+    totalError.innerHTML = `
       <i class="fas fa-exclamation-circle"></i>
       <div class="file-info">
         <span class="file-name">Total Size Exceeded</span>
@@ -454,154 +469,117 @@ async function updateFilePreview() {
       </div>
       <span class="file-status error">Max: ${formatBytes(MAX_TOTAL_SIZE)}</span>
     `;
-    fileList.appendChild(totalErrorItem);
+    elements.fileList.appendChild(totalError);
     hasErrors = true;
   }
   
-  fileCount.textContent = `${files.length} file${files.length !== 1 ? 's' : ''}`;
-  totalSize.textContent = formatBytes(totalBytes);
-  liveRegion.textContent = `${files.length} file${files.length !== 1 ? 's' : ''} selected, total: ${formatBytes(totalBytes)}`;
+  elements.fileCount.textContent = `${files.length} file${files.length !== 1 ? 's' : ''}`;
+  elements.totalSize.textContent = formatBytes(totalBytes);
+  elements.liveRegion.textContent = `${files.length} file(s) selected, total: ${formatBytes(totalBytes)}`;
   
-  uploadBtn.disabled = hasErrors;
-  if (hasErrors) {
-    uploadBtn.classList.add('disabled');
-  } else {
-    uploadBtn.classList.remove('disabled');
-  }
-}
-
-function escapeHtml(str) {
-  if (!str) return '';
-  return str.replace(/[&<>]/g, function(m) {
-    if (m === '&') return '&amp;';
-    if (m === '<') return '&lt;';
-    if (m === '>') return '&gt;';
-    return m;
-  });
+  elements.uploadBtn.disabled = hasErrors;
+  if (hasErrors) elements.uploadBtn.classList.add('disabled');
+  else elements.uploadBtn.classList.remove('disabled');
 }
 
 // ===== DRAG & DROP =====
-fileDropZone.addEventListener('dragover', (e) => {
+elements.fileDropZone.addEventListener('dragover', (e) => {
   e.preventDefault();
-  fileDropZone.classList.add('drag-over');
+  elements.fileDropZone.classList.add('drag-over');
 });
-
-fileDropZone.addEventListener('dragleave', () => {
-  fileDropZone.classList.remove('drag-over');
+elements.fileDropZone.addEventListener('dragleave', () => {
+  elements.fileDropZone.classList.remove('drag-over');
 });
-
-fileDropZone.addEventListener('drop', (e) => {
+elements.fileDropZone.addEventListener('drop', (e) => {
   e.preventDefault();
-  fileDropZone.classList.remove('drag-over');
+  elements.fileDropZone.classList.remove('drag-over');
   if (e.dataTransfer.files.length) {
-    filesInput.files = e.dataTransfer.files;
+    elements.files.files = e.dataTransfer.files;
     updateFilePreview();
   }
 });
+elements.files.addEventListener('change', updateFilePreview);
+elements.fileDropZone.addEventListener('click', () => elements.files.click());
 
-filesInput.addEventListener('change', updateFilePreview);
-
-// ===== LOAD INDICATORS FROM EXTERNAL JSON =====
+// ===== LOAD INDICATORS =====
 function loadIndicators() {
-  const indicatorsPath = REPO_NAME + '/indicators.json';
-  console.log('🔄 Loading indicators from:', indicatorsPath);
-  categorySelect.innerHTML = '<option value="">Loading categories...</option>';
-  indicatorSelect.innerHTML = '<option value="">Loading indicators...</option>';
-  indicatorSelect.disabled = true;
+  console.log('Loading indicators...');
+  elements.category.innerHTML = '<option value="">Loading categories...</option>';
+  elements.indicator.innerHTML = '<option value="">Loading indicators...</option>';
+  elements.indicator.disabled = true;
   
-  fetch(indicatorsPath)
-    .then(response => {
-      if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-      console.log('✅ indicators.json fetch successful');
-      return response.json();
+  fetch('/indicators.json')
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
     })
     .then(data => {
-      console.log('📊 Indicators data loaded:', data);
-      console.log('📋 Available categories:', Object.keys(data));
+      console.log('Indicators loaded:', Object.keys(data).length, 'categories');
       indicatorsData = data;
       
-      categorySelect.innerHTML = '<option value="">Select Evidence Category</option>';
-      const categories = Object.keys(data);
-      
-      if (categories.length === 0) {
-        throw new Error('No categories found in indicators.json');
-      }
-      
-      categories.forEach(category => {
+      elements.category.innerHTML = '<option value="">Select Evidence Category</option>';
+      Object.keys(data).forEach(category => {
         const opt = document.createElement("option");
         opt.value = category;
         opt.textContent = category;
-        categorySelect.appendChild(opt);
+        elements.category.appendChild(opt);
       });
       
-      categorySelect.disabled = false;
-      console.log(`✅ Loaded ${categories.length} categories`);
-      
-      categorySelect.addEventListener("change", () => {
-        const selected = categorySelect.value;
-        console.log(`📂 Category selected: ${selected}`);
-        indicatorSelect.innerHTML = '<option value="">Select Indicator</option>';
+      elements.category.addEventListener("change", () => {
+        const selected = elements.category.value;
+        elements.indicator.innerHTML = '<option value="">Select Indicator</option>';
         if (data[selected]) {
-          indicatorSelect.disabled = false;
-          console.log(`📊 Loading ${data[selected].length} indicators for ${selected}`);
+          elements.indicator.disabled = false;
           data[selected].forEach(ind => {
             const opt = document.createElement("option");
             opt.value = ind;
             opt.textContent = ind;
-            indicatorSelect.appendChild(opt);
+            elements.indicator.appendChild(opt);
           });
         } else {
-          indicatorSelect.disabled = true;
-          console.warn(`⚠️ No indicators found for category: ${selected}`);
+          elements.indicator.disabled = true;
         }
       });
       
-      showSaveStatus(`Loaded ${categories.length} categories from indicators.json`, 'saved');
-      liveRegion.textContent = `Indicators loaded successfully. ${categories.length} categories available.`;
+      showSaveStatus(`Loaded ${Object.keys(data).length} categories`, 'saved');
     })
     .catch(err => {
-      console.error('❌ Error loading indicators.json:', err);
-      console.error('❌ Failed path:', indicatorsPath);
-      categorySelect.innerHTML = '<option value="">Error - Check Console</option>';
-      showError('Unable to load indicators. Please refresh the page.');
+      console.error('Error loading indicators:', err);
+      elements.category.innerHTML = '<option value="">Error loading categories</option>';
+      showError('Unable to load indicators. Please refresh.');
       
-      // FALLBACK DATA - ensure functionality even if JSON fails
-      console.log('📦 Using fallback indicator data');
-      const fallbackData = {
-        "Maternal Health": ["ANC 1st Visit", "ANC 4th Visit", "Skilled Delivery", "Postnatal Care"],
-        "Family Planning": ["Modern Contraceptive Prevalence Rate", "FP Uptake", "Long Acting Methods"],
-        "Child Health": ["Immunization Coverage", "Vitamin A Supplementation", "Growth Monitoring"],
-        "Nutrition": ["Exclusive Breastfeeding", "MUAC Screening", "Supplementation Program"]
+      // Fallback data
+      const fallback = {
+        "Maternal Health": ["ANC 1st Visit", "Skilled Delivery", "Postnatal Care"],
+        "Family Planning": ["Modern CPR", "FP Uptake", "Long Acting Methods"],
+        "Child Health": ["Immunization Coverage", "Vitamin A Supplementation"],
+        "Nutrition": ["Exclusive Breastfeeding", "MUAC Screening"]
       };
-      
-      indicatorsData = fallbackData;
-      categorySelect.innerHTML = '<option value="">Select Evidence Category</option>';
-      Object.keys(fallbackData).forEach(category => {
+      indicatorsData = fallback;
+      elements.category.innerHTML = '<option value="">Select Category</option>';
+      Object.keys(fallback).forEach(cat => {
         const opt = document.createElement("option");
-        opt.value = category;
-        opt.textContent = category;
-        categorySelect.appendChild(opt);
+        opt.value = cat;
+        opt.textContent = cat;
+        elements.category.appendChild(opt);
       });
-      
-      categorySelect.addEventListener("change", () => {
-        const selected = categorySelect.value;
-        indicatorSelect.innerHTML = '<option value="">Select Indicator</option>';
-        if (fallbackData[selected]) {
-          indicatorSelect.disabled = false;
-          fallbackData[selected].forEach(ind => {
+      elements.category.addEventListener("change", () => {
+        const selected = elements.category.value;
+        elements.indicator.innerHTML = '<option value="">Select Indicator</option>';
+        if (fallback[selected]) {
+          elements.indicator.disabled = false;
+          fallback[selected].forEach(ind => {
             const opt = document.createElement("option");
             opt.value = ind;
             opt.textContent = ind;
-            indicatorSelect.appendChild(opt);
+            elements.indicator.appendChild(opt);
           });
-        } else {
-          indicatorSelect.disabled = true;
         }
       });
     });
 }
 
-// ===== EMAIL SUGGESTIONS =====
+// ===== EMAIL HANDLING =====
 function saveOfficerEmail(email) {
   if (!email) return;
   let emails = JSON.parse(localStorage.getItem("officerEmails") || "[]");
@@ -611,7 +589,7 @@ function saveOfficerEmail(email) {
   }
 }
 
-officerEmailInput.addEventListener("focus", () => {
+elements.officerEmail.addEventListener("focus", () => {
   const datalist = document.getElementById("officerEmails");
   datalist.innerHTML = "";
   let emails = JSON.parse(localStorage.getItem("officerEmails") || "[]");
@@ -622,16 +600,14 @@ officerEmailInput.addEventListener("focus", () => {
   });
 });
 
-officerEmailInput.addEventListener('input', function() {
+elements.officerEmail.addEventListener('input', function() {
   const email = this.value.trim();
   const validationDiv = document.getElementById('emailValidation');
-  
   if (email === '') {
     validationDiv.textContent = '';
     validationDiv.className = 'validation-message';
     return;
   }
-  
   if (!isValidEmail(email)) {
     validationDiv.textContent = '⚠ Please enter a valid email address';
     validationDiv.className = 'validation-message error';
@@ -641,74 +617,59 @@ officerEmailInput.addEventListener('input', function() {
   }
 });
 
-// ===== UPLOAD HISTORY =====
+// ===== HISTORY =====
 function saveToHistory(uploadData) {
   const history = JSON.parse(localStorage.getItem('uploadHistory') || '[]');
-  const historyItem = {
+  history.unshift({
     id: Date.now(),
     evidenceName: uploadData.evidenceName,
-    officerEmail: uploadData.officerEmail,
     category: uploadData.category,
     indicator: uploadData.indicator,
     subCounty: uploadData.subCounty,
     filesCount: uploadData.filesCount,
     totalSize: uploadData.totalSize,
-    timestamp: new Date().toISOString(),
-    status: 'completed'
-  };
-  history.unshift(historyItem);
+    timestamp: new Date().toISOString()
+  });
   localStorage.setItem('uploadHistory', JSON.stringify(history.slice(0, 10)));
   loadHistory();
 }
 
 function loadHistory() {
   const history = JSON.parse(localStorage.getItem('uploadHistory') || '[]');
-  
   if (history.length > 0) {
-    historySection.style.display = 'block';
-    emptyHistory.style.display = 'none';
-    historyList.innerHTML = '';
-    
+    elements.historySection.style.display = 'block';
+    elements.emptyHistory.style.display = 'none';
+    elements.historyList.innerHTML = '';
     history.forEach(item => {
+      const date = new Date(item.timestamp);
+      const formattedDate = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
       const historyItem = document.createElement('div');
       historyItem.className = 'history-item';
-      const date = new Date(item.timestamp);
-      const formattedDate = date.toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-      });
-      
       historyItem.innerHTML = `
         <div class="upload-info">
           <span class="upload-name">${escapeHtml(item.evidenceName)}</span>
-          <span class="upload-meta">
-            ${formattedDate} • ${item.filesCount} file${item.filesCount !== 1 ? 's' : ''} • ${formatBytes(item.totalSize)}
-          </span>
+          <span class="upload-meta">${formattedDate} • ${item.filesCount} file(s) • ${formatBytes(item.totalSize)}</span>
         </div>
-        <span class="upload-status success">
-          <i class="fas fa-check-circle"></i> Completed
-        </span>
+        <span class="upload-status success"><i class="fas fa-check-circle"></i> Completed</span>
       `;
-      historyList.appendChild(historyItem);
+      elements.historyList.appendChild(historyItem);
     });
   } else {
-    historySection.style.display = 'none';
-    emptyHistory.style.display = 'block';
+    elements.historySection.style.display = 'none';
+    elements.emptyHistory.style.display = 'block';
   }
 }
 
-refreshHistory.addEventListener('click', loadHistory);
+elements.refreshHistory.addEventListener('click', loadHistory);
 
 // ===== AUTO-SAVE DRAFT =====
 function saveDraft() {
   const draft = {
-    officerEmail: officerEmailInput.value,
-    evidenceName: evidenceNameInput.value,
-    category: categorySelect.value,
-    indicator: indicatorSelect.value,
-    subCounty: subCountySelect.value,
+    officerEmail: elements.officerEmail.value,
+    evidenceName: elements.evidenceName.value,
+    category: elements.category.value,
+    indicator: elements.indicator.value,
+    subCounty: elements.subCounty.value,
     timestamp: Date.now()
   };
   localStorage.setItem('uploadDraft', JSON.stringify(draft));
@@ -718,83 +679,55 @@ function saveDraft() {
 async function loadDraft() {
   const draft = JSON.parse(localStorage.getItem('uploadDraft') || '{}');
   if (draft.timestamp && Date.now() - draft.timestamp < 24 * 60 * 60 * 1000) {
-    const confirmed = await showModal('Restore Draft', 'Found a saved draft from earlier. Would you like to restore it?', 'Restore', 'Start New');
+    const confirmed = await showModal('Restore Draft', 'Found a saved draft. Restore it?', 'Restore', 'Start New');
     if (confirmed) {
-      officerEmailInput.value = draft.officerEmail || '';
-      evidenceNameInput.value = draft.evidenceName || '';
-      categorySelect.value = draft.category || '';
+      elements.officerEmail.value = draft.officerEmail || '';
+      elements.evidenceName.value = draft.evidenceName || '';
+      elements.category.value = draft.category || '';
       if (draft.category && indicatorsData && indicatorsData[draft.category]) {
-        categorySelect.dispatchEvent(new Event('change'));
-        setTimeout(() => {
-          indicatorSelect.value = draft.indicator || '';
-        }, 100);
+        elements.category.dispatchEvent(new Event('change'));
+        setTimeout(() => { elements.indicator.value = draft.indicator || ''; }, 100);
       }
-      subCountySelect.value = draft.subCounty || '';
+      elements.subCounty.value = draft.subCounty || '';
       showSaveStatus('Draft restored', 'saved');
     }
   }
 }
 
 // ===== UPLOAD FUNCTION =====
-uploadBtn.addEventListener("click", async () => {
-  const officerEmail = officerEmailInput.value.trim();
-  const evidenceName = evidenceNameInput.value.trim();
-  const category = categorySelect.value;
-  const indicator = indicatorSelect.value;
-  const subCounty = subCountySelect.value;
-  const files = filesInput.files;
+elements.uploadBtn.addEventListener("click", async () => {
+  const officerEmail = elements.officerEmail.value.trim();
+  const evidenceName = elements.evidenceName.value.trim();
+  const category = elements.category.value;
+  const indicator = elements.indicator.value;
+  const subCounty = elements.subCounty.value;
+  const files = elements.files.files;
 
-  if (!isValidEmail(officerEmail)) {
-    showError("Please enter a valid email address");
-    officerEmailInput.focus();
-    return;
-  }
-
-  const missing = [];
-  if (!evidenceName) missing.push("Evidence Name");
-  if (!category || category === 'Loading categories...') missing.push("Category");
-  if (!indicator) missing.push("Indicator");
-  if (!subCounty) missing.push("Sub-County");
-  if (!files.length) missing.push("PDF File(s)");
-
-  if (missing.length > 0) {
-    showError("Please fill the following required fields:<br>- " + missing.join("<br>- "));
-    return;
-  }
+  if (!isValidEmail(officerEmail)) return showError("Valid email address required");
+  if (!evidenceName) return showError("Evidence name required");
+  if (!category || category === 'Loading categories...') return showError("Select a category");
+  if (!indicator) return showError("Select an indicator");
+  if (!subCounty) return showError("Select sub-county");
+  if (!files.length) return showError("Select PDF files");
 
   let totalSize = 0;
-  const validationErrors = [];
-  
-  for (let i = 0; i < files.length; i++) {
-    const file = files[i];
+  const errors = [];
+  for (const file of files) {
     totalSize += file.size;
-    try {
-      await validateFileSafety(file);
-    } catch (error) {
-      validationErrors.push(`"${file.name}": ${error.message}`);
-    }
+    try { await validateFileSafety(file); } 
+    catch (e) { errors.push(`${file.name}: ${e.message}`); }
   }
-
-  if (validationErrors.length > 0) {
-    showError("File validation errors:<br>- " + validationErrors.join("<br>- "));
-    return;
-  }
-
-  if (totalSize > MAX_TOTAL_SIZE) {
-    showError(`Total file size (${formatBytes(totalSize)}) exceeds maximum limit of ${formatBytes(MAX_TOTAL_SIZE)}`);
-    return;
-  }
+  if (errors.length) return showError("File errors:<br>- " + errors.join("<br>- "));
+  if (totalSize > MAX_TOTAL_SIZE) return showError(`Total size ${formatBytes(totalSize)} exceeds limit`);
 
   isUploading = true;
-  uploadBtn.classList.add('loading');
-  uploadBtn.disabled = true;
-  spinner.style.display = "block";
-  progressContainer.style.display = "block";
-  uploadText.style.display = "block";
-  uploadText.textContent = "Uploading... 0%";
-  progressBar.style.width = "0%";
-  showError("");
-  liveRegion.textContent = `Starting upload of ${files.length} file${files.length !== 1 ? 's' : ''}`;
+  elements.uploadBtn.disabled = true;
+  elements.uploadBtn.classList.add('loading');
+  elements.spinner.style.display = "block";
+  elements.progressContainer.style.display = "block";
+  elements.uploadText.style.display = "block";
+  elements.uploadText.textContent = "Uploading... 0%";
+  elements.progressBar.style.width = "0%";
 
   const formData = new FormData();
   formData.append("officerEmail", officerEmail);
@@ -803,132 +736,89 @@ uploadBtn.addEventListener("click", async () => {
   formData.append("indicator", indicator);
   formData.append("subCounty", subCounty);
   formData.append("csrfToken", csrfToken);
-  for (let file of files) formData.append("files", file, file.name);
+  for (let file of files) formData.append("files", file);
 
   const xhr = new XMLHttpRequest();
   xhr.open("POST", PROXY_URL, true);
   xhr.timeout = 300000;
-
-  xhr.upload.onprogress = (event) => {
-    if (event.lengthComputable) {
-      const percent = Math.round((event.loaded / event.total) * 100);
-      progressBar.style.width = percent + "%";
-      uploadText.textContent = `Uploading... ${percent}%`;
+  xhr.upload.onprogress = (e) => {
+    if (e.lengthComputable) {
+      const percent = Math.round((e.loaded / e.total) * 100);
+      elements.progressBar.style.width = percent + "%";
+      elements.uploadText.textContent = `Uploading... ${percent}%`;
     }
   };
-
   xhr.onload = () => {
-    spinner.style.display = "none";
-    progressBar.style.width = "100%";
-    uploadText.textContent = "Processing...";
-
+    elements.spinner.style.display = "none";
     setTimeout(() => {
-      progressContainer.style.display = "none";
-      uploadText.style.display = "none";
-      uploadBtn.classList.remove('loading');
-      uploadBtn.disabled = false;
+      elements.progressContainer.style.display = "none";
+      elements.uploadText.style.display = "none";
+      elements.uploadBtn.disabled = false;
+      elements.uploadBtn.classList.remove('loading');
       isUploading = false;
-
       if (xhr.status >= 200 && xhr.status < 300) {
-        showSuccess(`${files.length} file(s) submitted successfully. Confirmation sent to: ${officerEmail}`);
-        saveToHistory({
-          evidenceName,
-          officerEmail,
-          category,
-          indicator,
-          subCounty,
-          filesCount: files.length,
-          totalSize
-        });
-        liveRegion.textContent = `Upload completed. ${files.length} file${files.length !== 1 ? 's' : ''} uploaded.`;
-        filesInput.value = "";
+        showSuccess(`${files.length} file(s) submitted successfully. Confirmation sent to ${officerEmail}`);
+        saveToHistory({ evidenceName, category, indicator, subCounty, filesCount: files.length, totalSize });
+        elements.files.value = "";
         updateFilePreview();
         localStorage.removeItem('uploadDraft');
         saveOfficerEmail(officerEmail);
       } else {
-        showError(`Upload failed (Status: ${xhr.status}). Please try again.`);
+        showError(`Upload failed (${xhr.status}). Try again.`);
       }
     }, 500);
   };
-
   xhr.onerror = () => {
-    spinner.style.display = "none";
-    uploadBtn.classList.remove('loading');
-    uploadBtn.disabled = false;
+    elements.spinner.style.display = "none";
+    elements.uploadBtn.disabled = false;
+    elements.uploadBtn.classList.remove('loading');
     isUploading = false;
-    showError("Network error. Please check your connection and try again.");
+    showError("Network error. Check connection.");
   };
-
-  xhr.ontimeout = () => {
-    spinner.style.display = "none";
-    uploadBtn.classList.remove('loading');
-    uploadBtn.disabled = false;
-    isUploading = false;
-    showError("Upload timeout. Please try again.");
-  };
-
   xhr.send(formData);
 });
 
 // ===== NETWORK STATUS =====
 function updateConnectionStatus() {
   if (navigator.onLine) {
-    connectionStatus.innerHTML = '<i class="fas fa-wifi"></i> Online';
-    connectionStatus.style.color = '#10b981';
+    elements.connectionStatus.innerHTML = '<i class="fas fa-wifi"></i> Online';
+    elements.connectionStatus.style.color = '#10b981';
   } else {
-    connectionStatus.innerHTML = '<i class="fas fa-wifi-slash"></i> Offline';
-    connectionStatus.style.color = '#ef4444';
+    elements.connectionStatus.innerHTML = '<i class="fas fa-wifi-slash"></i> Offline';
+    elements.connectionStatus.style.color = '#ef4444';
   }
 }
-
-window.addEventListener('online', () => {
-  updateConnectionStatus();
-  liveRegion.textContent = 'You are now online.';
-});
-
-window.addEventListener('offline', () => {
-  updateConnectionStatus();
-  liveRegion.textContent = 'You are offline. Uploads will resume when you reconnect.';
-});
+window.addEventListener('online', () => { updateConnectionStatus(); elements.liveRegion.textContent = 'You are online.'; });
+window.addEventListener('offline', () => { updateConnectionStatus(); elements.liveRegion.textContent = 'You are offline.'; });
 
 // ===== PWA INSTALLATION =====
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
-  installBtn.style.display = 'flex';
-  installBtn.addEventListener('click', () => {
-    installBtn.style.display = 'none';
+  elements.installBtn.style.display = 'flex';
+  elements.installBtn.addEventListener('click', () => {
+    elements.installBtn.style.display = 'none';
     if (deferredPrompt) {
       deferredPrompt.prompt();
-      deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('User accepted install');
-        }
-        deferredPrompt = null;
-      });
+      deferredPrompt = null;
     }
   });
 });
 
 // ===== INITIALIZATION =====
 window.addEventListener('load', async () => {
-  console.log('🚀 Application initializing...');
-  console.log('📁 Repository path:', REPO_NAME);
+  console.log('CCNO Portal v3.0 | Ready');
   updateConnectionStatus();
-  loadIndicators();  // This now uses the correct path
+  loadIndicators();
   loadHistory();
   setTimeout(() => loadDraft(), 500);
-  officerEmailInput.focus();
-  setInterval(saveDraft, 30000);
-  console.log('✅ Application ready');
+  elements.officerEmail.focus();
+  autoSaveTimer = setInterval(saveDraft, 30000);
 });
 
-window.addEventListener('beforeunload', (e) => {
-  if (officerEmailInput.value || evidenceNameInput.value || categorySelect.value) {
-    if (!isUploading) {
-      saveDraft();
-    }
-  }
+window.addEventListener('beforeunload', () => {
+  if (autoSaveTimer) clearInterval(autoSaveTimer);
+  if (elements.officerEmail.value || elements.evidenceName.value) saveDraft();
 });
 </script>
 </body>
