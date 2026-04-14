@@ -1,0 +1,19 @@
+{
+  "name": "Nakuru County CCNO Evidence Upload",
+  "short_name": "CCNO Evidence",
+  "description": "Secure evidence upload system for Nakuru County Chief Nursing Office",
+  "start_url": "https://pce.nakurucountychiefnursingofficer.site/",
+  "scope": "https://pce.nakurucountychiefnursingofficer.site/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4f46e5",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://pce.nakurucountychiefnursingofficer.site/images/LOGO.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["business", "productivity", "education"]
+}
